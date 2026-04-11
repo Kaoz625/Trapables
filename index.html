@@ -2041,6 +2041,7 @@ ul { list-style: none; }
      ============================================ -->
 <section class="hero" id="hero">
   <div class="hero-bg">
+    <img src="images/hero-bg.jpg" alt="" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;opacity:0.35;z-index:0;">
     <div class="hero-grid"></div>
     <div class="hero-noise"></div>
   </div>
@@ -2122,8 +2123,8 @@ ul { list-style: none; }
   <div class="container">
     <div class="about-grid">
       <div class="about-visual reveal">
-        <div class="about-visual-inner">
-          <span class="about-visual-text">TRAPABLES</span>
+        <div class="about-visual-inner" style="background: none;">
+          <img src="images/about-lifestyle.jpg" alt="Trapables NYC streetwear" style="width:100%;height:100%;object-fit:cover;display:block;">
         </div>
         <div class="about-visual-overlay">
           <p>Est. NYC</p>
@@ -2396,44 +2397,52 @@ ul { list-style: none; }
      ============================================ */
   const products = [
     {
-      id: 1, name: 'Trapstar Logo Tee', category: 'tee', type: 'GRAPHIC TEE',
+      id: 1, name: 'Trapables Script Tee', category: 'tee', type: 'GRAPHIC TEE',
       price: 35, sizes: ['S','M','L','XL','XXL'], badge: 'new',
-      colors: ['#9b59ff', '#1a1a1a']
+      colors: ['#9b59ff', '#1a1a1a'],
+      image: 'images/product-tracksuit-blue.jpg'
     },
     {
-      id: 2, name: 'NYC Drip Hoodie', category: 'hoodie', type: 'HOODIE',
+      id: 2, name: 'OG Embroidered Hoodie', category: 'hoodie', type: 'HOODIE',
       price: 75, sizes: ['S','M','L','XL','XXL'], badge: 'hot',
-      colors: ['#0a0a0a', '#2d2d2d']
+      colors: ['#0a0a0a', '#2d2d2d'],
+      image: 'images/product-hoodie-white.jpg'
     },
     {
-      id: 3, name: 'Block Letters Snapback', category: 'hat', type: 'SNAPBACK',
+      id: 3, name: 'Trapables Trucker Hat', category: 'hat', type: 'TRUCKER HAT',
       price: 32, sizes: ['OS'], badge: null,
-      colors: ['#1a1a1a', '#9b59ff']
+      colors: ['#ff6600', '#9b59ff'],
+      image: 'images/product-hat-orange.jpg'
     },
     {
-      id: 4, name: 'Neon Skull Tee', category: 'tee', type: 'GRAPHIC TEE',
-      price: 38, originalPrice: 45, sizes: ['S','M','L','XL'], badge: null,
-      colors: ['#39ff14', '#0a0a0a']
-    },
-    {
-      id: 5, name: 'Trap House Zip-Up', category: 'hoodie', type: 'ZIP HOODIE',
-      price: 85, sizes: ['S','M','L','XL','XXL'], badge: 'new',
-      colors: ['#141414', '#9b59ff']
-    },
-    {
-      id: 6, name: 'Street Code Dad Hat', category: 'hat', type: 'DAD HAT',
+      id: 4, name: 'Trapables Script Beanie', category: 'hat', type: 'BEANIE',
       price: 28, sizes: ['OS'], badge: null,
-      colors: ['#2a2a2a', '#0a0a0a']
+      colors: ['#9b59ff', '#0a0a0a'],
+      image: 'images/product-beanie-purple.jpg'
     },
     {
-      id: 7, name: 'Graffiti Socks (3-Pack)', category: 'accessory', type: 'SOCKS',
-      price: 25, sizes: ['OS'], badge: null,
-      colors: ['#9b59ff', '#39ff14']
+      id: 5, name: 'Trapables Varsity Jacket', category: 'hoodie', type: 'VARSITY JACKET',
+      price: 120, sizes: ['S','M','L','XL','XXL'], badge: 'new',
+      colors: ['#1144cc', '#ffffee'],
+      image: 'images/product-varsity-jacket.jpg'
     },
     {
-      id: 8, name: 'OG Embroidered Tee', category: 'tee', type: 'GRAPHIC TEE',
-      price: 40, sizes: ['M','L','XL'], badge: 'sold-out',
-      colors: ['#ff0066', '#0a0a0a']
+      id: 6, name: 'OG Logo Trucker — Red', category: 'hat', type: 'TRUCKER HAT',
+      price: 30, sizes: ['OS'], badge: null,
+      colors: ['#cc1111', '#ffffff'],
+      image: 'images/product-hat-red.jpg'
+    },
+    {
+      id: 7, name: 'Trapables Cargo Pants', category: 'accessory', type: 'CARGO PANTS',
+      price: 65, sizes: ['S','M','L','XL'], badge: null,
+      colors: ['#111111', '#333333'],
+      image: 'images/product-pants-black.jpg'
+    },
+    {
+      id: 8, name: 'Script Beanie — White', category: 'hat', type: 'BEANIE',
+      price: 26, sizes: ['OS'], badge: 'sold-out',
+      colors: ['#ffffff', '#0a0a0a'],
+      image: 'images/product-beanie-white.jpg'
     }
   ];
 
@@ -2560,10 +2569,11 @@ ul { list-style: none; }
       return `
         <div class="product-card reveal" data-category="${product.category}">
           ${badgeHTML}
-          <div class="product-image" style="background: linear-gradient(135deg, ${gradientColors[0]}22, ${gradientColors[1]}22), var(--bg-secondary);">
-            <div class="product-icon" style="color: ${gradientColors[0]}40;">&#9670;</div>
-            <span class="product-type-label">${product.type}</span>
-            <span class="coming-soon">Product Image Coming Soon</span>
+          <div class="product-image">
+            ${product.image
+              ? `<img src="${product.image}" alt="${product.name}" style="width:100%;height:100%;object-fit:cover;display:block;">`
+              : `<div class="product-icon" style="color: ${gradientColors[0]}40;">&#9670;</div><span class="product-type-label">${product.type}</span>`
+            }
           </div>
           <div class="product-info">
             <h3 class="product-name">${product.name}</h3>
@@ -2620,13 +2630,22 @@ ul { list-style: none; }
      ============================================ */
   function renderInstagram() {
     const grid = document.getElementById('instagramGrid');
-    const colors = ['#9b59ff', '#ff0066', '#39ff14', '#9b59ff', '#ff0066', '#39ff14'];
-    const labels = ['Street', 'Drop', 'NYC', 'Fit', 'Culture', 'Trap'];
+    const igImages = [
+      'images/ig-1.jpg',
+      'images/ig-2.jpg',
+      'images/ig-3.jpg',
+      'images/ig-4.jpg',
+      'images/ig-5.jpg',
+      'images/ig-6.jpg',
+      'images/ig-7.jpg',
+      'images/ig-8.jpg',
+      'images/ig-9.jpg'
+    ];
 
-    grid.innerHTML = colors.map((color, i) => `
+    grid.innerHTML = igImages.map((src, i) => `
       <a href="https://instagram.com/trapables.shop" target="_blank" class="instagram-item">
-        <div class="instagram-item-inner" style="background: linear-gradient(135deg, ${color}15, ${color}05);">
-          <span class="ig-icon" style="color: ${color};">${labels[i]}</span>
+        <div class="instagram-item-inner" style="background: none; overflow: hidden;">
+          <img src="${src}" alt="Trapables on Instagram" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s ease;">
         </div>
         <div class="instagram-overlay">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
